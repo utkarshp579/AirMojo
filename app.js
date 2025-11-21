@@ -32,8 +32,20 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate); // to use ejs for creating boilerplate
 app.use(express.static(path.join(__dirname, "/public"))); // to use static files.
 
+// ========== DATABASE CONFIGURATION ==========
+
+// // Option 1: Local Development Only (Currently Active)
+// const MONGO_URL = "mongodb://127.0.0.1:27017/airmojo";
+// const dbUrl = MONGO_URL;
+
+// Option 2: Production Only (Uncomment for production deployment)
+// const dbUrl = process.env.ATLASDB_URL;
+
+// Option 3: Auto-switch (Uses production if ATLASDB_URL exists, else local)
 const MONGO_URL = "mongodb://127.0.0.1:27017/airmojo";
 const dbUrl = process.env.ATLASDB_URL || MONGO_URL;
+
+// ==========================================
 
 async function main() {
   await mongoose.connect(dbUrl);
