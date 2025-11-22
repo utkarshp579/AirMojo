@@ -150,7 +150,7 @@ body{
     iss efect ki help se hum kisi chheez ko , like kisi text ko kisi image ke upar show krna ho.
     
     BS -> .card-img-overlay 
-
+    
     hum iski help se hum clickable effect lana chah rhe hi.
 */
 .card-img-overlay{
@@ -185,4 +185,65 @@ body{
 .show-card{
    padding-left: 0; 
    padding-right: 0;
+}
+
+/* Home Page */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 2rem;
+    z-index: 2;
+}
+
+.hero-search input:focus {
+    box-shadow: none;
+}
+
+.btn-search {
+    background-color: #fe424d;
+    color: white;
+    border: none;
+}
+
+.btn-search:hover {
+    background-color: #d9353f;
+    color: white;
+}
+
+.hover-zoom {
+    transition: transform 0.3s ease;
+}
+
+.listing-card:hover .hover-zoom {
+    transform: scale(1.05);
+}
+
+.features-section {
+    background-color: #f8f9fa;
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(254, 66, 77, 0.1);
+    border-radius: 50%;
+}
+
+.cta-section {
+    background-color: white;
 }

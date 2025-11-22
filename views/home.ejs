@@ -1,0 +1,100 @@
+<%- layout("/layouts/boilerplate") %>
+
+<!-- Hero Section -->
+<div class="hero-section mb-5">
+    <div class="hero-content text-center">
+        <h1 class="display-3 fw-bold mb-3 text-white">Find Your Next Adventure</h1>
+        <p class="lead text-white mb-4">Discover unique homes and experiences around the world</p>
+        
+        <!-- Search Bar -->
+        <!-- <div class="hero-search col-md-8 offset-md-2">
+            <form action="/listings" method="GET" class="d-flex bg-white p-2 rounded-pill shadow-lg">
+                <input class="form-control border-0 rounded-pill ps-4" type="search" placeholder="Where do you want to go?" aria-label="Search" name="search">
+                <button class="btn btn-search rounded-pill px-4" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </form>
+        </div> -->
+        <div class="mt-4">
+            <a href="/listings" class="btn btn-lg btn-light text-danger fw-bold px-4 py-2 rounded-pill me-2">Explore Listings</a>
+            <% if(!currUser) { %>
+            <a href="/signup" class="btn btn-lg btn-outline-light fw-bold px-4 py-2 rounded-pill">Join AirMojo</a>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Listings Section -->
+<div class="container mb-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Featured Listings</h2>
+        <p class="text-muted">Check out our top rated properties</p>
+    </div>
+    
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+        <% for(let listing of featuredListings) { %>
+            <div class="col">
+                <a href="/listings/<%= listing._id %>" class="listing-link">
+                    <div class="card h-100 listing-card">
+                        <div class="img-container" style="height: 250px; overflow: hidden; border-radius: 1rem;">
+                            <img src="<%= listing.image.url %>" class="card-img-top h-100 w-100 object-fit-cover hover-zoom" alt="listing_image">
+                            <div class="card-img-overlay"></div>
+                        </div>
+                        <div class="card-body pb-0">
+                            <p class="card-text mt-2">
+                                <b><%= listing.title %></b> <br>
+                                <span class="text-muted"><%= listing.location %>, <%= listing.country %></span> <br>
+                                <span class="fw-bold text-danger">&#x20B9; <%= listing.price.toLocaleString("en-In") %></span> <span class="text-muted">/ night</span>
+                            </p> 
+                        </div>
+                    </div> 
+                </a>
+            </div>
+        <% } %>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="/listings" class="btn btn-outline-danger rounded-pill px-4">View All Listings</a>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="features-section py-5 bg-light rounded-4 mb-5">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="feature-icon mb-3">
+                    <i class="fa-solid fa-house-chimney fa-3x text-danger"></i>
+                </div>
+                <h4>Unique Stays</h4>
+                <p class="text-muted">From cozy cottages to luxury villas, find a home that fits your style.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon mb-3">
+                    <i class="fa-solid fa-shield-halved fa-3x text-danger"></i>
+                </div>
+                <h4>Secure Booking</h4>
+                <p class="text-muted">Our secure payment system ensures your money and data are always safe.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon mb-3">
+                    <i class="fa-solid fa-headset fa-3x text-danger"></i>
+                </div>
+                <h4>24/7 Support</h4>
+                <p class="text-muted">Our dedicated support team is always here to help you with any questions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="cta-section text-center py-5 mb-5">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Ready to start your journey?</h2>
+        <p class="lead text-muted mb-4">Join thousands of hosts and guests on AirMojo today.</p>
+        <% if(!currUser) { %>
+            <a href="/signup" class="btn btn-danger btn-lg rounded-pill px-5">Get Started</a>
+        <% } else { %>
+            <a href="/listings/new" class="btn btn-danger btn-lg rounded-pill px-5">Host a Home</a>
+        <% } %>
+    </div>
+</div>
+
