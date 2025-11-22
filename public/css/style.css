@@ -23,37 +23,102 @@ body{
     color: #222222 !important;
 }
 
-/* Footer  */
-.f-info-links a{
-    text-decoration: none;
-    color: #222222;
+/* Footer */
+.footer {
+    background-color: #ebebeb;
+    padding: 3rem 0;
+    margin-top: auto;
 }
-.f-info-links a:hover{
+
+.f-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.f-info-brand, .f-info-links-col, .f-info-socials {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.f-info-brand {
+    align-items: flex-start;
+    flex: 1;
+    min-width: 200px;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.f-info-links-col {
+    flex: 1;
+    min-width: 150px;
+}
+
+.f-info-links-col h4, .f-info-socials h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+.f-info-links-col a {
+    text-decoration: none;
+    color: #555;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+
+.f-info-links-col a:hover {
+    color: #fe424d;
     text-decoration: underline;
 }
 
-.f-info-links , .f-info-socials , .f-info-brand{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
+.f-info-socials {
+    flex: 1;
+    min-width: 150px;
+    align-items: flex-start;
 }
 
-
-.f-info-socials i{
-    font-size: 1.2rem;
-    margin-right: 2rem;
+.social-icons {
+    display: flex;
+    gap: 1rem;
 }
 
-.f-info{
-    text-align: center;
-    height: 8rem ;
-    /* font-size: 20px; */
-    background-color: #ebebeb;
-    display: flex;
-    justify-content: center;
-    align-items: space-evenly;
-    flex-wrap: wrap;
+.social-icons a {
+    color: #555;
+    font-size: 1.5rem;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: #fe424d;
+}
+
+@media (max-width: 768px) {
+    .f-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .f-info-brand, .f-info-links-col, .f-info-socials {
+        align-items: center;
+        width: 100%;
+    }
 }
 
 /* Cards */

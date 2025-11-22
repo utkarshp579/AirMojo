@@ -23,6 +23,7 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js"); // router
 const reviewRouter = require("./routes/review.js"); // router
 const userRouter = require("./routes/user.js"); // router
+const staticRouter = require("./routes/static.js"); // router
 
 const path = require("path");
 app.set("view engine", "ejs");
@@ -125,6 +126,7 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
+app.use("/", staticRouter);
 
 // ! sending page not found response for all other routes that are not defined above.
 // * means sabse match ho jayega. --> ise wild card matching kehte hi.
