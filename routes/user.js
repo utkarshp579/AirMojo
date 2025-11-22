@@ -8,6 +8,7 @@ const userController = require("../controllers/user.js");
 const staticController = require("../controllers/staticPages.js");
 const { renderFile } = require("ejs");
 
+// Home page
 router.get("/", wrapAsync(staticController.renderHome));
 
 router.route("/signup")

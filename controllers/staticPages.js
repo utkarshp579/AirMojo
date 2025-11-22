@@ -1,9 +1,13 @@
 const Listing = require("../models/listing.js");
 
 module.exports.renderHome = async (req, res) => {
-    const featuredListings = await Listing.find({}).limit(6);
+    // const featuredListings = await Listing.find({}).limit(6);
+    const featuredListings = await Listing.find({})
+      .sort({ rating: -1 })
+      .limit(6);
     res.render("home.ejs", { featuredListings });
 };
+
 
 module.exports.renderAbout = (req, res) => {
     res.render("static/about");
