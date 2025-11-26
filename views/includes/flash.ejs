@@ -1,12 +1,29 @@
-<% if(success && success.length ){ %> <!-- success is an array . On console.log we get to know about it.-->
-    <div class="alert col-6 offset-3 alert-success alert-dismissible fade show" role="alert">
-        <%= success %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-<% } %>
-<% if(error && error.length ){ %> <!-- success is an array . On console.log we get to know about it.-->
-    <div class="alert col-6 offset-3 alert-danger alert-dismissible fade show" role="alert">
-        <%= error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+<% if(typeof success !== 'undefined' && success && success.length ){ %>
+<!-- success is an array . On console.log we get to know about it.-->
+<div
+  class="alert col-6 offset-3 alert-success alert-dismissible fade show"
+  role="alert"
+>
+  <%= success %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %> <% if(typeof error !== 'undefined' && error && error.length ){ %>
+<!-- error is an array . On console.log we get to know about it.-->
+<div
+  class="alert col-6 offset-3 alert-danger alert-dismissible fade show"
+  role="alert"
+>
+  <%= error %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
 <% } %>

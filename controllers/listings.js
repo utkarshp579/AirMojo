@@ -2,8 +2,20 @@ const Listing = require("../models/listing");
 const ExpressError = require("../utils/ExpressError.js");
 
 module.exports.index = async (req, res) => {
+  console.log("\n========== FILTER DEBUG START ==========");
+  console.log("Full req.query:", req.query);
+
   // Extract filter parameters from query string
   const { minPrice, maxPrice, minRating, location, country } = req.query;
+
+  // Log filters for debugging
+  console.log("Extracted Filters:", {
+    minPrice,
+    maxPrice,
+    minRating,
+    location,
+    country,
+  });
 
   // Build filter object for MongoDB query
   let filter = {};
@@ -11,31 +23,68 @@ module.exports.index = async (req, res) => {
   // Price filtering
   if (minPrice || maxPrice) {
     filter.price = {};
-    if (minPrice) filter.price.$gte = Number(minPrice);
-    if (maxPrice) filter.price.$lte = Number(maxPrice);
+    if (minPrice) {
+      filter.price.$gte = Number(minPrice);
+      console.log(`✓ Price Filter: >= ${minPrice}`);
+    }
+    if (maxPrice) {
+      filter.price.$lte = Number(maxPrice);
+      console.log(`✓ Price Filter: <= ${maxPrice}`);
+    }
   }
 
   // Location filtering (case-insensitive regex search)
-  if (location) {
-    filter.location = { $regex: location, $options: "i" };
+  if (location && location.trim() !== "") {
+    filter.location = { $regex: location.trim(), $options: "i" };
+    console.log(`✓ Location Filter: "${location.trim()}"`);
   }
 
   // Country filtering (case-insensitive regex search)
-  if (country) {
-    filter.country = { $regex: country, $options: "i" };
+  if (country && country.trim() !== "") {
+    filter.country = { $regex: country.trim(), $options: "i" };
+    console.log(`✓ Country Filter: "${country.trim()}"`);
   }
+
+  console.log("Final MongoDB Filter Object:", JSON.stringify(filter, null, 2));
 
   // Fetch listings with filters and populate reviews for rating calculation
   let allListings = await Listing.find(filter).populate("reviews");
 
+  console.log(`\n📊 Database Results: Found ${allListings.length} listings`);
+
+  // Log sample of found listings
+  if (allListings.length > 0) {
+    console.log("\nSample listings found:");
+    allListings.slice(0, 3).forEach((listing) => {
+      console.log(
+        `  - ${listing.title}: ₹${listing.price}, ${listing.location}, ${listing.country}`
+      );
+    });
+  }
+
   // Filter by rating if minRating is specified
   if (minRating) {
     const minRatingNum = Number(minRating);
+    console.log(`\n⭐ Applying rating filter: >= ${minRatingNum}`);
+
+    const beforeRatingFilter = allListings.length;
     allListings = allListings.filter((listing) => {
       const avgRating = listing.averageRating;
-      return avgRating >= minRatingNum;
+      const passes = avgRating >= minRatingNum;
+      console.log(
+        `  ${passes ? "✓" : "✗"} ${listing.title}: Rating ${avgRating.toFixed(
+          1
+        )} (${listing.reviews.length} reviews)`
+      );
+      return passes;
     });
+    console.log(
+      `\n📊 After rating filter: ${allListings.length}/${beforeRatingFilter} listings passed`
+    );
   }
+
+  console.log("\n✅ Final result count:", allListings.length);
+  console.log("========== FILTER DEBUG END ==========\n");
 
   // Pass filters to view for displaying active filters
   res.render("listings/index.ejs", {

@@ -49,7 +49,10 @@ const dbUrl = process.env.ATLASDB_URL || MONGO_URL;
 // ==========================================
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(dbUrl, {
+    serverSelectionTimeoutMS: 10000, // Increase timeout to 10 seconds
+    socketTimeoutMS: 45000,
+  });
 }
 
 main()
