@@ -1,7 +1,5 @@
 Multiple image upload.
 Set limit on picture upload.
 
-Responsivenesss
-Social Media link footer.
-
-Adding AirMojo to a new Respo
+highlights on add new listing 
+flash msg disabling 
