@@ -13,13 +13,19 @@
       <div class="navbar-nav">
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/listings">All Listings</a>
+        <% if(currUser) { %>
         <a class="nav-link" href="/listings/new">Add new Listings</a>
+        <% } %>
       </div>
       <div class="navbar-nav ms-auto">
         <% if(typeof currUser === 'undefined' || !currUser) { %>
         <a class="nav-link" href="/signup">Sign up</a>
         <a class="nav-link" href="/login">Log in</a>
         <% } else { %>
+        <a class="nav-link position-relative" href="#" id="notificationBell">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notification-badge d-none">0</span>
+        </a>
         <a class="nav-link" href="/logout">Log out</a>
         <% } %>
       </div>

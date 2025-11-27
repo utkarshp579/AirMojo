@@ -75,7 +75,7 @@
         <%for(let listing of allListings){  %>
             <a href="/listings/<%= listing._id%>" class="listing-link" >
                 <div class="card col listing-card" >
-                    <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+                    <img data-src="<%= listing.image.url %>" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f0f0f0' width='400' height='300'/%3E%3Ctext fill='%23999' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='18'%3ELoading...%3C/text%3E%3C/svg%3E" class="card-img-top lazy" alt="listing_image" style="height: 20rem;">
                     <div class="card-img-overlay"></div>
                     <div class="card-body">
                         <p class="card-text">
