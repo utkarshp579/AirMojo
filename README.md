@@ -20,7 +20,7 @@ A full-stack property rental and booking platform that allows users to list, sea
 - 📦 File Upload support (Cloudinary)
 - 🛏️ **Booking Workflow**
 - 💼 Session management with express-session
-- 📮 Refreshed **Footer** with helpful links and contact info
+- 📮 Refreshed **Header & Footer** with helpful links and contact info
 - 🌐 Backend deployed on **Render**, DB on **MongoDB Atlas**
 - ✅ API tested using **Hoppscotch**
 
@@ -117,7 +117,7 @@ You can test API routes using Hoppscotch.
 
 - ✅ Launched the dedicated Home page with a hero search, featured listings, and quick-entry cards.
 - ✅ Introduced the upgraded filter bar to combine destination, date, and price filters in one place.
-- ✅ Polished the footer with consistent styling, navigation shortcuts, and support links.
+- ✅ Polished the header and footer with consistent styling, navigation shortcuts, and support links.
 
 ---
 
